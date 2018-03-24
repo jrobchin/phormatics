@@ -1,0 +1,25 @@
+Analysis:
+-> All:
+    run deep pose
+    extract key points according to the work out
+    
+    -> Workout Specific:
+        track key points using a tracking algorithm (i.e. Kernelized Correlation Filters)
+        calculate relevant angles
+        pass data into *Critique Function* -> critiques
+        use critiques to form coherent advice
+        **WIP** return relevant datapoints and advice
+        
+    
+Critique Function:
+-> Start:
+    **TODO: come up with a scoring algorithm that will determine how 'wrong' someone is doing a workout**
+    return critiques
+    
+    
+Algorithm Notes:
+-> Don't give the same advice over and over again
+-> What happens if we lose tracking points
+
+TODO:
+-> Figure out how deep pose outputs data and map to body parts
