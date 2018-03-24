@@ -15,7 +15,7 @@ def plank(body_parts):
             Threshold = 0.1
     """
     
-    def deviation_in_hips(body_parts, optimal_angle, thresh):
+    def deviation_in_hips(body_parts, optimal_angle):
         """
         Calculate the deviation in the hips from an optimal angle.
         """
@@ -31,8 +31,7 @@ def plank(body_parts):
         deviation = helpers.percent_deviation(optimal_angle, angle_detected)
         return deviation
     
-    
-    return deviation_in_hips(body_parts, math.pi, 0.1)
+    return deviation_in_hips(body_parts, math.pi)
 
 def curl(body_parts, side):
     """
@@ -117,6 +116,5 @@ def pushup(body_parts):
         # calculate percent deviation
         deviation = helpers.percent_deviation(optimal_angle, angle_detected)
         return deviation
-
 
     return deviation_in_hips(body_parts, math.pi)

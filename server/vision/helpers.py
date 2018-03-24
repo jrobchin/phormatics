@@ -70,8 +70,8 @@ def best_subject(humans):
     for h in humans:
         try:
             # get body part positions
-            shoulder_pos = average_or_one(h.body_parts, 2, 5)
-            hip_pos = average_or_one(h.body_parts, 8, 11)
+            shoulder_pos = bp_coordinates_average(h.body_parts, 2, 5)
+            hip_pos = bp_coordinates_average(h.body_parts, 8, 11)
             
             if shoulder_pos and hip_pos:
                 # compute graphical distance betweek the shoulders and hips
