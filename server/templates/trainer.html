@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+
+<html>
+
+<head>
+    <title>Phormatics</title>
+
+    <link rel="stylesheet" type="text/css" href="static/trainer/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body id="bdy" onresize="adjustSize();">
+
+    <div id="videoCanvasContainer">
+        <canvas id="videoCanvas"></canvas>
+
+        <div id="hiddenContainer" hidden=true>
+            <video id="video" playsinline autoplay></video>
+            <canvas id="transmit" width=320px; height=240px></canvas>
+            <!--canvas id="receiverCanvas" width=320px; height=240px></canvas-->
+        </div>
+    </div>
+
+    <div id='sidebar'>
+        <div class="jumbotron">
+            <div class="select">
+                <label for="workoutMode">Workout Mode: </label>
+                <select id="workoutSelector" onchange="changeWorkout();">
+                    <option value="none">Select a workout</option>
+                    <option value="pushup">Push up</option>
+                    <option value="plank">Plank</option>
+                    <option value="curls">Curls</option>
+                    <option value="squats">Squats</option>
+                </select>
+            </div>
+
+            <div class="select">
+                <label for="videoSource">Video source: </label>
+                <select id="videoSource"></select>
+            </div>
+
+            <h1 class="timer">
+                <span class="minutes">00</span>
+                :
+                <span class="seconds">00</span>
+            </h1>
+            <h2>
+                Reps: <span id="repCounter">0</span>
+            </h2>
+
+            <div class="timer-buttons">
+                <button id="start" class="btn btn-lg btn-default btn-success" data-action="start">Start</button>
+                <button id="stop" class="btn btn-lg btn-default btn-danger" data-action="stop">Stop</button>
+                <button id="reset" class="btn btn-lg btn-default">Reset</button>
+            </div>
+        </div>
+
+        <div id="chatOut">
+        </div>
+    </div>
+
+
+    <script src="/static/trainer/main.js"></script>
+
+</body>
+
+</html>

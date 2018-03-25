@@ -25,14 +25,17 @@ def extract_body_parts(estimator, image, rotate=None):
     # get human pose positions
     humans = estimator.inference(image)
     if not len(humans):
-        raise Exception("No humans found in the image.")
+        return -1
 
     # extract the best subject
     subject = best_subject(humans)
-    
-    return subject.body_parts
 
-def analyze_workout(body_parts, workout, side):
+    if subject:
+        return subject.body_parts
+    else:
+        return -1
+
+def analyze_workout(body_parts, workout, state, side):
     """
     Run the appropriate analyzer.
 
@@ -42,8 +45,8 @@ def analyze_workout(body_parts, workout, side):
     analyzer = getattr(workouts, workout)
 
     if side:
-        deviation, critique = analyzer(body_parts, side)
+        deviation, critique = analyzer(body_parts, state, side)
     else:
-        deviation, critique = analyzer(body_parts)
+        deviation, critique = analyzer(body_parts, state)
 
     return deviation, critique
