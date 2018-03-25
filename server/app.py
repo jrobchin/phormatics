@@ -37,6 +37,9 @@ def send_static(path):
 """
 Front-end serving
 """
+@app.route("/home")
+def home():
+    return render_template('home.html')
 
 @app.route("/login")
 def login():
@@ -50,6 +53,13 @@ def about():
 def trainer():
     return render_template('trainer.html')
 
+@app.route("/friends")
+def friends():
+    return render_template('friends.html')
+
+@app.route("/chat")
+def chat():
+    return render_template('chat.html')
 
 """
 Computer Vision

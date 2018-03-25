@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About Phormatics</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/static/css/about.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+<body>
+
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '154689001865494',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.12' // use graph api version 2.8
+    });
+
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      hiLbl(response.name, response.id);
+    });
+  }
+
+  function hiLbl(name, id){
+    console.log(name, id);
+    var imgURL = "http://graph.facebook.com/" + id + "/picture?type=normal"
+    document.getElementById('fbdisp').innerHTML =
+        'Hi, ' + name + '! ' + 
+        '<img style="margin: 5px; display: inline; max-width:90px;max-height:40px; width: auto;height: auto; border-radius: 50%;" src="'+imgURL+'">' +
+        '<a style="display: inline;" onclick="FB.logout();revertLbl();">Logout</a>';
+  }
+
+  function revertLbl(){
+    document.getElementById('fbdisp').innerHTML =
+        '<a onclick="FB.login();checkLoginState();" id="facebook">Login with <i class="fa fa-facebook" aria-hidden="true"></i>acebook</a>';
+  }
+</script>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="logo" class="navbar-brand" href="/home"><img src="/static/images/logo.png"></a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        <li><a href="/friends">Gymmies <i class="fa fa-child" aria-hidden="true"></i> </a> </li>
+        <li><a href="/chat">Schedule-Bot <i class="fa fa-calendar" aria-hidden="true"></i> </a> </li>
+         <li class='active'><a href="/about">About <i class="fa fa-search" aria-hidden="true"></i> </a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+           <li id="fbdisp" scope="public_profile,email,user_friends" onlogin="checkLoginState();"><a onclick="FB.login();" id="facebook">Login with <i class="fa fa-facebook" aria-hidden="true"></i>acebook</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+	<div class="post">
+
+	<div class="date">Created March 23-25 for Hack NYU 2018</div>
+
+	<h2>Read Me</h2>
+
+
+  
+	
+
+	
+
+
+
+	<p class="quote1">What stops you from exercising?</p>
+
+	<p>Battling gym anxiety is a struggle new gym-goers often face. Studies show that 15% of people experience anxiety when exercising at a public gym. The journey to an active and healthy lifestyle should not involve crowded gyms and judgment from other gym-goers, and that’s why we invented Phormatics. Phormatics allows you to exercise at the comfort of your own home with an intelligent AI system that tracks your daily progress and builds an individualized workout system just for you!</p>
+
+	<p>Exercising can cause serious physical damage if not performed using proper techniques and forms. Phormatics, however, uses an intelligent computer vision system which constantly tracks your movements, ensuring your form is perfect. Not only has your workout become that much more efficient, it also limits your risk of injury. As long as you have a camera on an Phormatics-compatible desktop/mobile device, you can be sure that every exercise will bring you closer to the healthy lifestyle you've always wanted. </p>
+
+	<p>We\’re focused on giving a revolutionary exercise experience for every individual, no judgement involved. We understand that sometimes there just isn/’t enough time to go to the gym or build a perfect exercise routine. With Phormatics, you can exercise in the convenience of your own home with an intelligent AI bot building the ideal routine.</p>
+
+	<p>Everyone can benefit from a gym buddy, or Gymmies, as we call them. A simple Facebook login, and you are connected to various Gymmies around you, creating a community of fitness activists. We want to make sure that even from home, you are never working out alone. Congratulate others on their fitness accomplishments by giving them a "spot", share new routines and see what you can do to make your community more active. We've throughly enjoyed developing and finetuning Phormatics and hope you share in our vision of using AI to transform your fitness/social life forever.</p>
+
+
+	<h2>Credits</h2>
+
+	<table border="0">
+
+		<tbody>
+			<tr>
+				<td> <a href="https://www.linkedin.com/in/jrobchin/"> <img style="display: block; max-width:230px;max-height:95px; width: auto;height: auto; border-radius: 50%;" src="/static/images/jason.jpeg"> <b> Jason Chin</b></a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+				<td><b>Western University Software Engineering</b></td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td> <a href="https://www.linkedin.com/in/charlielin10/"> <img style="display: block; max-width:230px;max-height:95px; width: auto;height: auto; border-radius: 50%;" src="/static/images/charlie.png"> <b>Charlie Lin</b></a> &nbsp; &nbsp;</td>
+				<td><b>Western University Software Engineering/Business Administration</b></td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td> <a href="https://www.linkedin.com/in/brad-huang/"> <img style="display: block; max-width:230px;max-height:95px; width: auto;height: auto; border-radius: 50%;" src="/static/images/brad.jpeg"> <b>Brad Huang</b></a> &nbsp; &nbsp; </td>
+				<td><b>University of Waterloo Computer Science</b></td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td> <a href="https://www.linkedin.com/in/cwoozle/"> <img style="display: block; max-width:230px;max-height:95px; width: auto;height: auto; border-radius: 50%;" src="/static/images/calvin.jpg"> <b>Calvin Woo</b></a> &nbsp; &nbsp;</td>
+				<td><b>University of Waterloo Nanotechnology Engineering</b></td>
+			</tr>
+
+		</tbody>
+		</table>
+
+
+	<hr>
+
+</div>
+
+
+
+
+
+
+
+
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

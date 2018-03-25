@@ -1,0 +1,70 @@
+#content{
+    text-align:top;
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+    color:white;
+}
+
+.botText{
+    font-size:10pt;
+    color:red;
+}
+
+#userText{
+    width: 100%;
+    font-size:10pt;
+    color:black;
+}
+
+.userText{
+    font-size:10pt;
+    color:black;
+}
+
+#chatOut {
+    text-align: left;
+    padding-left: 10px;
+    overflow: scroll;
+}
+
+#logo{
+background-repeat: repeat-y;
+}
+
+body{
+    background-size: cover;
+    background-position: center;
+    font-family: Lato;
+    color:white;
+}
+
+#facebook:hover{
+    color: #3b5998;
+    font-weight: 1000;
+}
+
+html{
+    height:100%;
+}
+
+h1{
+    font-size: 5em;
+    font-weight:700;
+    
+}
+h1 span{
+background:rgba(0,0,0, 0.7);
+}
+
+#chatOut {
+    height: 54vh;
+    border: 1px solid grey;
+    background:rgba(255,255,255, 0.8);
+    
+
+}
+
+#sendBtn{
+    color: black;
+}

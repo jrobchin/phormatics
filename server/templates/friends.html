@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phormatics Gymmies</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/static/css/friends.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  
+<body>
+
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '154689001865494',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.12' // use graph api version 2.8
+    });
+
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      hiLbl(response.name, response.id);
+    });
+  }
+
+  function hiLbl(name, id){
+    console.log(name, id);
+    var imgURL = "http://graph.facebook.com/" + id + "/picture?type=normal"
+    document.getElementById('fbdisp').innerHTML =
+        'Hi, ' + name + '! ' + 
+        '<img style="margin: 5px; display: inline; max-width:90px;max-height:40px; width: auto;height: auto; border-radius: 50%;" src="'+imgURL+'">' +
+        '<a style="display: inline;" onclick="FB.logout();revertLbl();">Logout</a>';
+  }
+
+  function revertLbl(){
+    document.getElementById('fbdisp').innerHTML =
+        '<a onclick="FB.login();checkLoginState();" id="facebook">Login with <i class="fa fa-facebook" aria-hidden="true"></i>acebook</a>';
+  }
+</script>
+
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="logo" class="navbar-brand" href="/home"><img src="/static/images/logo.png"></a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        <li class='active'><a href="/friends">Gymmies <i class="fa fa-child" aria-hidden="true"></i> </a> </li>
+        <li><a href="/chat">Schedule-Bot <i class="fa fa-calendar" aria-hidden="true"></i> </a> </li>
+         <li><a href="/about">About <i class="fa fa-search" aria-hidden="true"></i> </a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+           <li id="fbdisp" scope="public_profile,email,user_friends" onlogin="checkLoginState();"><a onclick="FB.login();" id="facebook">Login with <i class="fa fa-facebook" aria-hidden="true"></i>acebook</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+<P><h1><span style="color:black;">Gymmies</span></h1></P>
+
+
+
+<div id="overall">
+
+
+<div id="pricing-table" class="clear">
+    <div class="plan">
+        <h3>Dana Shariah<span><br><img class="hello" src="/static/images/person1.jpg"></span></h3>
+        <a class="signup" onclick="document.getElementById('abc').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abc'>10</b> Total Spots</li>
+            <li><b>10</b> Average Posture</li>
+            <li><b>4</b> Workouts Recently</li>
+      <li><b>234</b> Seconds Active</li>      
+        </ul> 
+    </div>
+    <div class="plan">
+        <h3>Ukaleq Maxentius<span><br><img class="hello" src="/static/images/person2.jpg"></span></h3>
+        <a class="signup" onclick="document.getElementById('abcd').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abcd'>10</b> Total Spots</li>
+            <li><b>8.9</b> Average Posture</li>
+            <li><b>2</b> Workouts Recently</li>
+      <li><b>5000</b> Seconds Active</li>      
+        </ul>    
+    </div>
+    <div class="plan">
+        <h3>Caoilinn Woo<span><br><img class="hello" src="/static/images/person3.jpg"></span></h3>
+     <a class="signup" onclick="document.getElementById('abcde').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abcde'>10</b> Total Spots</li>
+            <li><b>2.5</b> Average Posture</li>
+            <li><b>5</b> Workouts Recently</li>
+      <li><b>9239</b> Seconds Active</li>      
+        </ul>
+    </div>
+    <div class="plan">
+        <h3>Tristão Amancio<span><br><img class="hello" src="/static/images/person4.jpg"></span></h3>
+       <a class="signup" onclick="document.getElementById('abcf').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abcf'>10</b> Total Spots</li>
+            <li><b>10</b> Average Posture</li>
+            <li><b>2</b> Workouts Recently</li>
+      <li><b>2342</b> Seconds Active</li>      
+        </ul>
+    </div>  
+     <div class="plan">
+        <h3>Ajay Eli<span><br><img class="hello" src="/static/images/person5.jpg"></span></h3>
+        <a class="signup" onclick="document.getElementById('abcg').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abcg'>10</b> Total Spots</li>
+            <li><b>10</b> Average Posture</li>
+            <li><b>4</b> Workouts Recently</li>
+      <li><b>234</b> Seconds Active</li>      
+        </ul> 
+    </div>
+     <div class="plan">
+        <h3>Rafferty Kyriakos<span><br><img class="hello" src="/static/images/person6.jpg"></span></h3>
+       <a class="signup" onclick="document.getElementById('abch').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abch'>10</b> Total Spots</li>
+            <li><b>10</b> Average Posture</li>
+            <li><b>4</b> Workouts Recently</li>
+      <li><b>234</b> Seconds Active</li>      
+        </ul> 
+    </div>
+     <div class="plan">
+        <h3>Iob Lee<span><br><img class="hello" src="/static/images/person7.jpg"></span></h3>
+         <a class="signup" onclick="document.getElementById('abci').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abci'>10</b> Total Spots</li>
+            <li><b>10</b> Average Posture</li>
+            <li><b>4</b> Workouts Recently</li>
+      <li><b>234</b> Seconds Active</li>      
+        </ul> 
+    </div>
+     <div class="plan">
+        <h3>Kacey Anna<span><br><img class="hello" src="/static/images/person8.jpg"></span></h3>
+         <a class="signup" onclick="document.getElementById('abcj').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abcj'>10</b> Total Spots</li>
+            <li><b>10</b> Average Posture</li>
+            <li><b>4</b> Workouts Recently</li>
+      <li><b>234</b> Seconds Active</li>      
+        </ul> 
+    </div>
+     <div class="plan">
+        <h3>Hans Ewoud<span><br><img class="hello" src="/static/images/person9.jpg"></span></h3>
+        <a class="signup" onclick="document.getElementById('abck').innerHTML++">Spot <i class="fa fa-chevron-circle-up"></i></a>         
+        <ul>
+            <li><b id='abck'>10</b> Total Spots</li>
+            <li><b>10</b> Average Posture</li>
+            <li><b>4</b> Workouts Recently</li>
+      <li><b>234</b> Seconds Active</li>      
+        </ul> 
+    </div>
+</div>
+
+
+</div>
+	
+
+
+
+
+
+
+
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

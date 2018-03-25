@@ -1,0 +1,51 @@
+#logo{
+background-repeat: no-repeat;
+}
+
+body{
+  background: url(/static/images/victor-freitas-570027-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+   	background-repeat: repeat-y;
+    font-family: Lato;
+    color:white;
+}
+
+
+.date{
+	color: #3498db;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+}
+
+h2{
+	color: #2c3e50;
+	font-size: 2.0rem;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.post{
+	margin-bottom: 20px;
+	 border: 20px solid #bdc3c7;
+	padding: 20px;
+	max-width: 900px;
+	width: 80%;
+	margin: 20px auto;
+	font-family: 'Source Sans Pro', sans-serif;
+	background-color: white;
+}
+
+#facebook:hover{
+    color: #3b5998;
+    font-weight: 1000;
+}
+
+html{
+    height:100%;
+}
+

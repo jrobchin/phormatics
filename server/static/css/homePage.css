@@ -1,0 +1,64 @@
+#content{
+	text-align:center;
+	padding-top: 25%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				 0px 8px 13px rgba(0,0,0,0.1),
+				 0px 18px 23px rgba(0,0,0,0.1);
+}
+
+/* ---- reset ---- */ canvas{ display: block; vertical-align: bottom; } /* ---- particles.js container ---- */ #particles-js{ position:absolute; width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; } /* ---- stats.js ---- */ .count-particles{ background: #000022; position: absolute; top: 48px; left: 0; width: 80px; color: #13E8E9; font-size: .8em; text-align: left; text-indent: 4px; line-height: 14px; padding-bottom: 2px; font-family: Helvetica, Arial, sans-serif; font-weight: bold; } .js-count-particles{ font-size: 1.1em; } #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } .count-particles{ border-radius: 0 0 3px 3px; }
+
+body > div:nth-child(10){
+visibility: hidden;
+}
+
+body > div.count-particles{
+visibility: hidden;
+}
+
+#logo{
+background-repeat: no-repeat;
+}
+
+
+body{
+	background: url(victor-freitas-570027-unsplash.jpg);
+	background-size: cover;
+	background-position: center;
+	font-family: Lato;
+	color:white;
+}
+
+h1{
+	font-size: 5em;
+	font-weight:700;
+}
+
+
+
+#facebook:hover{
+	color: #3b5998;
+	font-weight: 1000;
+}
+
+#lock:hover{
+	font-weight: 1000;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+html{
+	height:100%;
+}
+
+hr{
+	width:400px;
+	border-top: 1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0,0,0,0.2)
+}
