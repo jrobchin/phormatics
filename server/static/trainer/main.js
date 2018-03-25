@@ -54,7 +54,7 @@ const CONNECTIONS = [[3, 4, "#ff007f"],
                     [8, 9, "7f00ff"],
                     [5, 11, "00ffff"],
                     [2, 8, "ff00ff"]];
-const SQR_RADIUS = 4;
+const SQR_RADIUS = 7;
 
 startButton.onclick = () => {
     console.log(currentWorkout)
@@ -104,12 +104,12 @@ function drawConnections(ctx, v1, v2, width, height, color){
     x_2 = v2[0] * width;
     y_2 = v2[1] * height;
 
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color;
-
     ctx.beginPath();
     ctx.moveTo(x_1, y_1);
     ctx.lineTo(x_2, y_2);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
     ctx.stroke();
 
     ctx.fillRect(x_1 - SQR_RADIUS, y_1 - SQR_RADIUS, 2 * SQR_RADIUS, 2 * SQR_RADIUS);

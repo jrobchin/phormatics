@@ -115,7 +115,7 @@ function addResponse(input) {
 			addMessage(responses[Math.floor(Math.random()*responses.length)], "bot")
 		}
 
-	}, 3000);
+	}, 1500);
 }
 
 function addToSchedule(workout) {
