@@ -10,9 +10,8 @@ HackNYU2018 project focused on using A.I. and computer vision to build a virtual
 
 How to use:
 1. Appropriate packages must be installed
-2. Run the server using xampp
+2. Run the flask server
 3. Open the trainer
-4. If you wish to visit the webpage, simply access the webpage in the repo
 
 Contributors: 
 - Jason Chin - https://www.linkedin.com/in/jrobchin/ 
