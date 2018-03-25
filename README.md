@@ -15,7 +15,7 @@ How to use:
 4. If you wish to visit the webpage, simply access the webpage in the repo
 
 Contributors: 
-Jason Chin - https://www.linkedin.com/in/jrobchin/ 
-Brad Huang - https://linkedin.com/in/brad-huang 
-Charlie Lin - https://www.linkedin.com/in/charlielin10/ 
-Calvin Woo - https://www.linkedin.com/in/cwoozle/ 
+- Jason Chin - https://www.linkedin.com/in/jrobchin/ 
+- Brad Huang - https://linkedin.com/in/brad-huang 
+- Charlie Lin - https://www.linkedin.com/in/charlielin10/ 
+- Calvin Woo - https://www.linkedin.com/in/cwoozle/ 
