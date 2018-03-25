@@ -1,0 +1,66 @@
+html{
+     height: 100%;
+}
+
+body{
+    vertical-align: baseline;
+    text-align: center;
+	background-color: #ffffff;
+    height: 100%;
+}
+
+#videoCanvasContainer{
+    float: left;
+    height: 100%;
+    width: 70%;
+}
+
+#sidebar{
+    float: right;
+    vertical-align: baseline;
+    text-align: center;
+    height: 100%;
+    width: 30%;
+}
+
+.select{
+    /*padding-top: 20px;*/
+}
+
+#chatOut{
+    vertical-align: bottom;
+    border: 8px solid #bdc3c7;
+    padding: 10px;
+    height: 50%;
+    width: 100%;
+    background-color: white;
+    font-size: 32px;
+}
+
+.timer{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.btn-success, .btn-danger, .btn-group{
+    padding-bottom: 20px;
+}
+
+.jumbotron {
+    height: 45%;
+    background-color: rgba(255,255,255,.75);
+    text-align: center;
+}
+
+h1 { 
+    font-size: 8em; 
+    font-weight: 100
+}
+
+#indicator {
+    background-color: rgba(0,0,0,.75);
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    margin-left: 50%;
+}
