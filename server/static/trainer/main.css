@@ -34,7 +34,7 @@ body{
     height: 50%;
     width: 100%;
     background-color: white;
-    overflow-y: scroll;
+    font-size: 32px;
 }
 
 .timer{
@@ -55,4 +55,12 @@ body{
 h1 { 
     font-size: 8em; 
     font-weight: 100
+}
+
+#indicator {
+    background-color: rgba(0,0,0,.75);
+    height: 20px;
+    width: 20px;
+    border-radius: 5px;
+    margin-left: 50%;
 }

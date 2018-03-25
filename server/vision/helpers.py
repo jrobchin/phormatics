@@ -1,6 +1,30 @@
 import math
 import numpy
 
+# def rotation(a, angle):
+#     b = [[numpy.cos(angle),-numpy.sin(angle)],
+#          [numpy.sin(angle), numpy.cos(angle)]]
+#     c = numpy.matmul(a,b) + (1, 0)
+#     return(c)
+
+def rotation(origin, point, angle):
+    """
+    Rotate a point counterclockwise by a given angle around a given origin.
+
+    The angle should be given in radians.
+    """
+    ox, oy = origin
+    px, py = point
+
+    qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
+    qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
+
+    return 1-qx, -qy
+
+def is_hip_higher(a, h, s):
+	v = ((s[0]-a[0]),(s[1]-a[1]))
+	return (h[1] > a[1] + ((v[1] * h[0]) / v[0]))
+
 def calculate_angle(v1, v0, v2):
     """
     Calculate angle from v1 to v0 to v2.
@@ -19,7 +43,7 @@ def calculate_angle(v1, v0, v2):
     return numpy.arccos(dot_product / norm_product)
 
 def percent_deviation(optimal_angle, angle_detected):
-    return (optimal_angle - angle_detected)/optimal_angle * 100
+    return abs(optimal_angle - angle_detected)
 
 def bp_coordinates(body_parts, idx):
     """

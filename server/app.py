@@ -89,10 +89,10 @@ def critique():
         # Read image from request
         encoded_string = request.form['image'].split(',')[-1]
         workout = request.form['workout']
-        prev_state = request.form.get('state')
-        rep_count = request.form.get('repCount')
-        rotate = request.form.get('rotate')
+        prev_state = int(request.form.get('state'))
         side = request.form.get('side')
+        rotate = int(request.form.get('rotate'))
+        rep_count = int(request.form.get('repCount'))
 
         if rotate == '0':
             rotate = False
@@ -114,7 +114,7 @@ def critique():
                 },
                 "status": -1
             })
-
+            
         # Assemble points array
         points = {}
         for i in range(18):
@@ -124,8 +124,8 @@ def critique():
                 points[i] = -1
 
         # Analyze workout from body parts
-        # deviation, critiques, state = analyze.analyze_workout(body_parts, workout, side, prev_state)
-        if abs(prev_state - state):
+        deviation, critique, state = analyze.analyze_workout(body_parts, workout, prev_state, side)
+        if prev_state == 2 and state == 1:
             rep_count += 1
 
         """ 
@@ -140,8 +140,8 @@ def critique():
         return jsonify({
             "data": {
                 "points": points,
-                "critiques": [],
-                "deviation": [],
+                "critique": critique,
+                "deviation": deviation,
                 "state": state,
                 "repCount": rep_count
             },

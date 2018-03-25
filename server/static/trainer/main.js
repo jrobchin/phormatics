@@ -28,14 +28,16 @@ var rotate = 0;
 var state = 0;
 var setCount = 0;
 var repCount = 0;
-var side = 'C'
+var side = "F"
+var deviation = 0;
+var critique = ""
 
 var timerTime = 0;
 var isRunning = false;
 var record = false;
 var interval;
 
-var currentWorkout;
+var currentWorkout = "none";
 
 const serverURL = "https://localhost:5000/critique";
 var img, resultImg;
@@ -55,9 +57,17 @@ const CONNECTIONS = [[3, 4, "#ff007f"],
 const SQR_RADIUS = 4;
 
 startButton.onclick = () => {
-    startTimer();
-    record = true;
-    upload();
+    console.log(currentWorkout)
+    if (currentWorkout === "none") {
+        addMessage("You must select a workout to start.")
+    } else {
+        setTimeout(() => {
+            startTimer();
+            record = true;
+            state = 1;
+            upload();
+        }, 3000);
+    }
 }
 stopButton.onclick = () => {
     stopTimer();
@@ -122,7 +132,7 @@ function upload(){
         type: 'POST',
         data: {
             image: img,
-            workout: 'pushup',
+            workout: currentWorkout,
             state: state,
             side: side,
             rotate: rotate,
@@ -130,18 +140,24 @@ function upload(){
         }
     }).done(function(data){
         repCount = data.data.repCount
-        critiques = data.data.critiques
+        critique = data.data.critique
+        deviation = data.data.deviation
+        state = data.data.state
+
+        console.log(deviation, critique)
 
         workoutUpdate();
 
         vidCtx.drawImage(video, 0, 0, vidCanvas.width, vidCanvas.height);
         drawHumanShape(vidCanvas, data["data"]["points"]);
         if (record){
-            setTimeout(upload, 50);
+            setTimeout(upload, 10);
         }
     }).fail(function() {
         console.log("Image upload failed!");
-        record = false;
+        if (record){
+            setTimeout(upload, 300);
+        }
     })
 }
 
@@ -217,7 +233,8 @@ function stopTimer() {
 
 function resetTimer() {
     stopTimer();
-  
+    $("#chatOut").empty()
+    repCount = 0
     timerTime = 0;
     minutes.innerText = '00';
     seconds.innerText = '00';
@@ -273,29 +290,37 @@ function changeWorkout() {
     $("#chatOut").empty()
     switch (currentWorkout) {
         case "pushup":
-            addMessage("<b>Please set up your pushups with your right shoulder facing the camera.</b>")
+            addMessage("Please set up your pushups with your right shoulder facing the camera.")
             rotate = 90;
             side = "R"
             repCount = 0
             break;
 
         case "plank":
-            addMessage("<b>Please set up your planks with your right shoulder facing the camera.</b>")
+            addMessage("Please set up your planks with your right shoulder facing the camera.")
             rotate = 90;
             side = "R"
             repCount = 0
             break;
 
         case "curls":
-            addMessage("<b>Please start curls with your right shoulder facing the camera."
-            + " Only curl with the arm closest to the camera.</b>")
+            addMessage("Please set up your curls with your right shoulder facing the camera."
+            + " After 10 repetitions, we'll switch to the left hand."
+            + " Only curl with the arm closest to the camera.")
             rotate = 0;
             side = "R"
             repCount = 0
             break;
 
+        case "shoulderpress":
+            addMessage("Please set up your shoulder presses facing the camera.")
+            rotate = 0;
+            side = "F"
+            repCount = 0
+            break;
+
         case "squats":
-            addMessage("<b>Please perform squats perfectly perpendicular to the camera.</b>")
+            addMessage("Please perform squats perfectly perpendicular to the camera.")
             rotate = 0;
             side = "R"
             repCount = 0
@@ -307,23 +332,72 @@ function changeWorkout() {
     workoutUpdate()
 }
 
+function rgb(r, g, b) {
+    if (r < 0) {
+        r = 0
+    } else if (r > 255) {
+        r = 255
+    }
+
+    if (g < 0) {
+        g = 0
+    } else if (g > 255) {
+        g = 255
+    }
+
+    if (b < 0) {
+        b = 0
+    } else if (b > 255) {
+        b = 255
+    }
+    return "rgb(" + Math.floor(r) + "," + Math.floor(g) + "," + "0)"
+}
+
 function workoutUpdate() {
     $("#repCounter").text(repCount)
+    $("#deviationDisplay").text(deviation)
+    if (state == 1) {
+        $("#stateDisplay").text("Go down")
+    } else if (state == 2) {
+        $("#stateDisplay").text("Go up")    
+    } else {
+        $("#stateDisplay").text("Rest")
+    } 
+    
+    if (side == "R") {
+        $("#sideDisplay").text("Right")
+    } else if (side == "L") {
+        $("#sideDisplay").text("Left")
+    } else if (side == "F") {
+        $("#sideDisplay").text("Center")
+    }
+
+
+    if (record) {
+        addMessage(critique)
+    }
+
+    var clr = rgb(255*deviation, (255 - 255*deviation), 0);
+    document.getElementById("indicator").style.backgroundColor = clr;
 
     switch (currentWorkout) {
         case "pushup":
         case "plank":
             if (repCount >= 10) {
-                addMessage("<b>Nice job! Take a quick break and click start when you're ready for the next set!</b>")
+                addMessage("Nice job! Take a quick break and click start when you're ready for the next set!")
                 rotate = 90;
                 side = "R"
+                repCount = 0
+                record = false
             }
             break;
 
         case "curls":
             if (repCount >= 10) {
-                addMessage("<b>Nice job! Take a quick break and click start when you're ready for the next set!</b>")
+                addMessage("Nice job! Take a quick break and click start when you're ready for the next set!")
                 rotate = 0;
+                repCount = 0
+                record = false
                 if (side == "R") {
                     side = "L"
                 } else {
@@ -334,11 +408,23 @@ function workoutUpdate() {
 
         case "squats":
             if (repCount >= 10) {
-                addMessage("<b>Nice job! Take a quick break and click start when you're ready for the next set!</b>")
+                addMessage("Nice job! Take a quick break and click start when you're ready for the next set!")
                 rotate = 0;
                 side = "R"
+                repCount = 0
+                record = false
             }
            break;
+
+        case "shoulderpress":
+            if (repCount >= 10) {
+                addMessage("Nice job! Take a quick break and click start when you're ready for the next set!")
+                rotate = 0;
+                side = "F"
+                repCount = 0
+                record = false
+            }
+            break;
 
         default:
             break;
@@ -352,9 +438,8 @@ Message Box
 */
 
 function addMessage(msg, style) {
-    var message = "<p style='" + style + "'>" + msg + "</p>"
     var msgBox = $("#chatOut")
-    msgBox.append(message);
+    msgBox.text(msg);
     updateScroll();
 }
 

@@ -13,11 +13,11 @@
     <title>Phormatics</title>
 
     <link rel="stylesheet" type="text/css" href="static/trainer/main.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
 </head>
 
 <body id="bdy" onresize="adjustSize();">
@@ -38,10 +38,9 @@
                 <label for="workoutMode">Workout Mode: </label>
                 <select id="workoutSelector" onchange="changeWorkout();">
                     <option value="none">Select a workout</option>
-                    <option value="pushup">Push up</option>
-                    <option value="plank">Plank</option>
                     <option value="curls">Curls</option>
                     <option value="squats">Squats</option>
+                    <option value="shoulderpress">Shoulder Press</option>
                 </select>
             </div>
 
@@ -55,9 +54,19 @@
                 :
                 <span class="seconds">00</span>
             </h1>
-            <h2>
+            <h3>
                 Reps: <span id="repCounter">0</span>
-            </h2>
+            </h3>
+            <h3>
+                Deviation: <span id="deviationDisplay">0</span>
+            </h3>
+            <h3>
+                State: <span id="stateDisplay">0</span>
+            </h3>
+            <h3>
+                Side: <span id="sideDisplay">Nones</span>
+            </h3>
+            <div id="indicator"></div>
 
             <div class="timer-buttons">
                 <button id="start" class="btn btn-lg btn-default btn-success" data-action="start">Start</button>
@@ -67,6 +76,7 @@
         </div>
 
         <div id="chatOut">
+            <p></p>
         </div>
     </div>
 
