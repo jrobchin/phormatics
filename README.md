@@ -16,6 +16,9 @@ How to use:
 
 Contributors:
 Jason Chin - https://www.linkedin.com/in/jrobchin/
+
 Brad Huang - https://linkedin.com/in/brad-huang
+
 Charlie Lin - https://www.linkedin.com/in/charlielin10/
+
 Calvin Woo - https://www.linkedin.com/in/cwoozle/
