@@ -20,7 +20,7 @@ This feature allowed us to track the position of the user's joints using a commo
 
 ### Data Flow (Web Based):
 <img src="https://github.com/jrobchin/phormatics/blob/master/notes/dataflow_diagram.jpg?raw=true"></img>
-<sup><em>f3: data flow diagram; note: the pose estimation model output must be processed as it returns pose estimation for all possible humans in frame (see: [Future Changes <sup>[1]</sup>](https://github.com/jrobchin/phormatics#future-changes)).</em></sup>
+<sup><em>f3: pseudo data flow diagram; note: the pose estimation model output must be processed as it returns pose estimation for all possible humans in frame (see: [Future Changes <sup>[1]</sup>](https://github.com/jrobchin/phormatics#future-changes)).</em></sup>
 
 This app runs in browser and the pose estimation and form critique generation is performed on a [Flask](http://flask.pocoo.org/) server. The webcam feed is captured using [WebRTC](https://webrtc.org/) and screenshots are sent to the server as a base64 encoded string every 50ms or as fast as the server can respond - which ever is slower (see: [Future Changes <sup>[2]</sup>](https://github.com/jrobchin/phormatics#future-changes)). 
 
