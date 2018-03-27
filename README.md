@@ -52,4 +52,4 @@ This means the server could be run in the cloud on high-performance hardware and
 	Webcam captures are encoded in base64 strings and a post request is sent to the server with the data (*note: this was done for ease of implementation due to the hackathon time constraint*).
 
 	*Possible Improvements:*
-	Implement web sockets to transfer webcam captures instead. 
+	Implement web sockets to transfer webcam captures instead.  
