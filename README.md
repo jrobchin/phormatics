@@ -39,8 +39,11 @@ This means the server could be run in the cloud on high-performance hardware and
 	The model estimates joints for all subjects found in the input image; we then analyze the output and extract the pose that is most likely to be the user.
 
 	*Possible Improvements:* 
+	
 	a. Modify model and training data to only estimate a single 'best' pose.
+	
 	or
+	
 	b. Implement re-identification and support multiple users at once. This is viable as forward propagation time does not increase with multiple poses being estimated.
 
 2. **Webcam Image Data Transfer**	
