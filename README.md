@@ -1,4 +1,4 @@
-This repo is NOT actively maintained and may not install as it has been 3 years since the last update. If you want to learn more about the next version of this project, check it out here: https://www.youtube.com/watch?v=tZcRYcjTwWA.
+This repo is NOT actively maintained and may not work out of the box as it has been 3 years since the last update. If you want to learn more about the next version of this project, check it out here: https://www.youtube.com/watch?v=tZcRYcjTwWA.
 
 
 <h1>Phormatics: <em>Using AI to Maximize Your Workout</em></h1>
